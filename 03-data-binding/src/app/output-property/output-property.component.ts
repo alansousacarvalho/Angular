@@ -1,6 +1,4 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Data } from '@angular/router';
-import { DataBindingComponent } from '../data-binding/data-binding.component';
 
 @Component({
   selector: 'contador',
