@@ -1,0 +1,14 @@
+<div class="mb-4">
+  <h3>Input/Output Property</h3>
+  <button class="btn btn-danger" (click)="decrementa()">-</button>
+  <input type="text" [value]="valor" readonly>
+  <button class="btn btn-primary" (click)="incrementa()">+</button>
+</div>
+<hr>
+
+<div>
+  <h3>ViewChild</h3>
+  <button class="btn btn-danger" (click)="decrementaChild()">-</button>
+  <input type="text" [value]="valor" readonly #campoInput>
+  <button class="btn btn-primary" (click)="incrementaChild()">+</button>
+</div>

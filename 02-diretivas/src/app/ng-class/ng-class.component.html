@@ -1,0 +1,20 @@
+<h1>Usando Property Binding</h1>
+<h2>
+  <i class="fa-solid fa-star"
+  [class.fa-solid.fa-star]="meuFavorito"
+  [class.fa-regular.fa-star]="!meuFavorito"
+  (click)="onClick()"
+  ></i>
+</h2>
+<hr>
+
+<h2>
+  <i class="fa-star"
+  [ngClass]="{
+    'fa-solid': meuFavoritoClass,
+    'fa-regular': !meuFavoritoClass
+  }"
+  (click)="onClickClass()"
+  ></i>
+</h2>
+

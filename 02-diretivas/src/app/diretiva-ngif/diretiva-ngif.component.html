@@ -1,0 +1,50 @@
+<h3>*ngIf</h3>
+
+<!-- Verificando pelo tamanho do array de cursos. -->
+
+<div *ngIf="cursos.length > 0">
+  <p>{{ cursos }}</p>
+</div>
+
+<div *ngIf="cursos.length == 0">
+  <p>Não existem cursos disponíveis.</p>
+</div>
+
+<!-- Negando a propriedade -->
+
+<div *ngIf="mostrarCursos">
+  <p>{{ cursos }}</p>
+</div>
+
+<div *ngIf="!mostrarCursos">
+  <p>Não existem cursos disponíveis.</p>
+</div>
+
+<br>
+
+<h3>Hidden como alternativa</h3>
+
+<div [hidden]="mostrarCursos">
+  <p>{{ cursos }}</p>
+</div>
+
+<div [hidden]="!mostrarCursos">
+  <p>Não existem cursos disponíveis.</p>
+</div>
+
+<button (click)="onMonstrarCursos()">Mostrar ou esconder Cursos</button>
+
+<hr>
+
+<h5>Removendo o * e usando template</h5>
+
+<div *ngIf="mostrarCursos">
+  <p>{{ cursos }}</p>
+</div>
+
+<ng-template [ngIf]="mostrarCursos">
+  <p>{{ cursos }}</p>
+</ng-template>
+
+
+

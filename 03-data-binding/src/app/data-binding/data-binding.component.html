@@ -1,0 +1,89 @@
+<section class="property-binding">
+
+  <article>
+    <h3>Interpolation / Interpolação</h3>
+
+    <p>String com interpolação: {{ url }}</p>
+    <p>Resultado de 1 + 1 é: {{ 1 + 1 }}</p>
+    <p>Resultado de 1 + 1 é: {{ 1 + 1 + getValor()}}</p>
+    <p>Curso de Angular: {{ cursoAngular && getCurtirCurso() }}</p>
+  </article>
+  <hr>
+  <article>
+    <h3>Property Binding</h3>
+
+    <!-- <img src="{{ urlImg }}"> -->
+    <img [src]="urlImg">
+    <!-- <img bind-src="urlImg" > -->
+  </article>
+  <hr>
+  <article class="mt-3">
+    <h3>Class e Style Binding</h3>
+    <div>
+      Selecione uma classe:
+      <select #classe (change)="0">
+        <option value="alert alert-success">Sucesso</option>
+        <option value="alert alert-info">info</option>
+        <option value="alert alert-warning">warning</option>
+        <option value="alert alert-danger">danger</option>
+      </select>
+    </div>
+    <br><br>
+
+    <div class="alert {{ classe.value }}">
+      Texto colorido conforme valor do combobox.
+    </div>
+
+    <!-- <alert type="success">
+      Sucesso
+    </alert>
+    <alert  type="info">
+      Info
+    </alert>
+    <alert type="warning">
+     Warning
+    </alert>
+    <alert type="danger">
+      Danger
+    </alert> -->
+
+    <div class="alert alert-danger" [style.display]="classe.value == 'alert alert-danger' ? 'block' : 'none'">
+      Aparecer somente quando der error.
+    </div>
+  </article>
+  <hr>
+  <article class="mb-3">
+    <h3>Event Binding</h3>
+    <div>
+
+      <button class="btn btn-primary" (click)="botaoClicado()">Clique!</button>
+
+      <br><br>
+
+      <input #campoInput type="text" (keyup)="onKeyUp($event)" (keyup.enter)="salvarValor(campoInput.value)"
+        (blur)="salvarValor(campoInput.value)">
+      <p>Valor atual: {{ valorAtual }}</p>
+      <p>Valor Salvo: {{ valorSalvo }}</p>
+
+      <span (mouseover)="onMouseOverOut()" (mouseout)="onMouseOverOut()" [class.highlight]="mouseOverOut">Passe o mouse
+        aqui</span>
+    </div>
+  </article>
+  <hr>
+</section>
+<hr>
+<hr>
+<app-meu-form></app-meu-form>
+
+<section class="input-output-properties">
+
+  <article>
+    <h3>Input Properties</h3>
+
+    <app-curso [nomeCarroFilho]="nomeCarro"></app-curso>
+
+    <contador [valor]="valorInicial" (mudouValor)="onMudouValor($event)"></contador>
+
+  </article>
+
+</section>
