@@ -14,6 +14,9 @@ export class CursosService {
     ]
   }
 
+  /**
+   * Método para verificar se o curso existe. Caso não existir, enviar para a página "Não Encontrado";
+   */
   getCurso(id: number) {
     let cursos = this.getCursos();
     for (let i = 0; i < cursos.length; i++) {

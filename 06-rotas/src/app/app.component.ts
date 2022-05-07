@@ -11,10 +11,10 @@ export class AppComponent {
   title = '07-rotas';
   mostrarMenu: boolean = false;
   constructor(private authService: AuthService) {
-
   }
 
   ngOnInit() {
+    //Mostrar menu ou não.
     this.authService.mostrarMenuEmitter.subscribe(
       mostrar => this.mostrarMenu = mostrar
     );

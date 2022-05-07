@@ -3,7 +3,7 @@
   <a class="list-group-item list-group-item-action active" aria-current="true">
     Lista de cursos
   </a>
-  <a *ngFor="let curso of cursos" [routerLink]="['/cursos', curso.id]"  class="list-group-item list-group-item-action">
+  <a *ngFor="let curso of cursos"  [routerLink]="['/cursos', curso.id]" class="list-group-item list-group-item-action">
     {{ curso.nome }}
   </a>
 </div>

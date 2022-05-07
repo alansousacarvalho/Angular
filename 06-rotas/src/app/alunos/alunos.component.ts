@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { AlunosService } from './alunos.service';
 
@@ -8,11 +9,11 @@ import { AlunosService } from './alunos.service';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit {
-
-   alunos: any[] = [];
+  alunos: any[] = [];
 
   constructor(
-    private alunosService: AlunosService
+    private alunosService: AlunosService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

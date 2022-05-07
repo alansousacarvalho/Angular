@@ -1,17 +1,17 @@
-<h5>Criar/Editar Aluno</h5>
+<h5>Editar Aluno</h5>
 
 <div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Id</label>
-    <input [(ngModel)]="aluno.id" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+    <label for="idAluno" class="form-label">Id</label>
+    <input [(ngModel)]="aluno.id" type="email" class="form-control" id="idAluno" aria-describedby="idAluno" disabled>
   </div>
   <div class="mb-3">
-    <label for="nome" class="form-label">Nome</label>
-    <input [(ngModel)]="aluno.nome" type="text" class="form-control" id="nome" (input)="onInput()">
+    <label for="nomeAluno" class="form-label">Nome</label>
+    <input [(ngModel)]="aluno.nome" type="text" class="form-control" id="nomeAluno" (input)="onInput()">
   </div>
   <div class="mb-3">
-    <label for="email" class="form-label">E-mail</label>
-    <input [(ngModel)]="aluno.email" type="email" class="form-control" id="email">
+    <label for="emailAluno" class="form-label">E-mail</label>
+    <input [(ngModel)]="aluno.email" type="email" class="form-control" id="emailAluno">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </div>

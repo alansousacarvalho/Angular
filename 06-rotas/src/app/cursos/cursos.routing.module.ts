@@ -7,6 +7,7 @@ import {
   CursoDetalheComponent
 } from ".";
 
+/** O 1º path está vazio, por causa do LazyLoading, pois já está sendo definido no LoadChildren no App.Routing. */
 const cursosRoutes: Routes = [
   { path: '', component: CursosComponent },
   { path: 'naoEncontrado', component: CursoNaoEncontradoComponent },

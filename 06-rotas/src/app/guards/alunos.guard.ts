@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot } from "@angular/router";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 
 export class AlunosGuard implements CanActivateChild{
 
@@ -9,6 +9,8 @@ export class AlunosGuard implements CanActivateChild{
   ): Observable<boolean> | boolean {
     // console.log(childRoute)
     // console.log(state)
+
+    console.log('AlunosGuard: Guarda rota filha');
 
     if(state.url.includes('editar')) {
       // alert('Usuário sem acesso');

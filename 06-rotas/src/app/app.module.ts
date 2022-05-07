@@ -11,6 +11,7 @@ import { AuthService } from './login/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { CursoGuard } from './guards/curso.guard';
 import { AlunosGuard } from './guards/alunos.guard';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 //import { CursosModule } from './cursos';
 // import { AlunosModule } from './alunos/alunos.module';
 
@@ -18,14 +19,15 @@ import { AlunosGuard } from './guards/alunos.guard';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
-    //CursosModule,
-    // AlunosModule
+    //CursosModule -> Comentado, por causa do LazyLoading.
+    //AlunosModule -> Comentado, por causa do LazyLoading.
   ],
   providers: [
     AuthService,

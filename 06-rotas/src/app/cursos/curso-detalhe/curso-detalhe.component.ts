@@ -18,22 +18,25 @@ export class CursoDetalheComponent implements OnInit {
     private route: ActivatedRoute,
     private cursoService: CursosService,
     private router: Router
-    ) {
+  ) {
     // this.id = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
     this.inscricao = this.route.params.subscribe(
       (params: any) => {
+        //Escutar as mudanças nos params, para manter o msm atualizado.
         this.id = params['id'];
+        //Verificar se o curso existe, de acordo com o id, Senão, curso = null.
         this.curso = this.cursoService.getCurso(this.id);
-      });
 
-      if (this.curso == null) {
-        this.router.navigate(['/cursos/naoEncontrado']);
-      }
+        if (this.curso == null) {
+          this.router.navigate(['/cursos/naoEncontrado']);
+        }
+      });
   }
 
+  //Desinscrever para evitar que o 'subscribe' continue ativo após a destruição do component.
   ngOnDestroy() {
     this.inscricao.unsubscribe();
   }
