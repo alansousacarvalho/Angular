@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormControlName, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { FormValidations } from '../shared/form-validations';
 
 import { Estados } from '../shared/models/estados.models';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -38,8 +39,9 @@ export class DataFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      confirmarEmail: ['', [Validators.required, Validators.email]],
       endereco: this.formBuilder.group({
-        cep: [null, [Validators.required, Validators.pattern(/^[0-9]{5}-[0-9]{3}$/)]],
+        cep: [null, [Validators.required, FormValidations.cepValidator]],
         numero: [null, Validators.required],
         complemento: [null],
         rua: [null, Validators.required],
@@ -66,7 +68,7 @@ export class DataFormComponent implements OnInit {
 
   buildFrameworks() {
     const values = this.framework.map(v => new FormControl(false));
-    return this.formBuilder.array(values, this.requiredMinCheckbox(1));
+    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
 
     // this.formBuilder.array [
     //   new FormControl(false),
@@ -128,7 +130,7 @@ export class DataFormComponent implements OnInit {
     this.form.reset();
   }
 
-  verificaValidTouched(campo: any) {
+  verificaValidTouched(campo: string) {
     return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
   }
 
@@ -200,31 +202,4 @@ export class DataFormComponent implements OnInit {
     this.form.get('tecnologia')?.setValue(['java', 'javascript', 'php']);
   }
 
-  cepValidator(control: FormControl) {
-    console.log(control);
-    const cep = control.value;
-
-    if(cep && cep !== '') {
-      const validacep = /^[0-9]{5}-[0-9]{3}$/;
-      return validacep.test(cep) ? null : { cepInvalido : true };
-    }
-    return null;
-  }
-
-  requiredMinCheckbox(min = 1) {
-    const totalChecked: ValidatorFn = (formArray: AbstractControl) => {
-      // const totalChecked = formArray.controls
-      //   .map(v => v.value)
-      //   .reduce((total, current) => current ? total + current : total, 0);
-      // return totalChecked >= min ? null : { required: true };
-      if(formArray instanceof FormArray) {
-        const totalSelected = formArray.controls
-          .map(v => v.value)
-          .reduce((total,current) => (current ? total + current : total), 0);
-        return totalSelected >= min ? null : { required: true }
-      }
-      throw new Error('formArray is not an instance of FormArray');
-    };
-    return totalChecked;
-  }
 }
