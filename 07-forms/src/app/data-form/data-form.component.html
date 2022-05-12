@@ -1,12 +1,18 @@
 <form [formGroup]="form" novalidate>
   <!-- Nome -->
   <div class="row col-sm-12">
-    <label for="name" class="form-label">Nome</label>
-    <div class="form-group pb-2" [ngClass]="aplicaCssValidacao('nome')">
+    <!-- <app-input-field [classeCss]="aplicaCssValidacao('nome')" id="name" label="Nome" placeholder="Ex: João da Silva"
+      formControlName="nome">
+    </app-input-field> -->
 
-      <input type="text" class="form-control" id="name" name="nome" placeholder="Nome" formControlName="nome" required>
-      <div *ngIf="verificaValidTouched('nome')" class="invalid-feedback">
-        Nome é obrigatório
+    <div class="form-group">
+      <label for="name" class="form-label">Nome</label>
+      <div class="form-group pb-2" [ngClass]="aplicaCssValidacao('nome')">
+
+        <input type="text" class="form-control" id="name" name="nome" placeholder="Nome" formControlName="nome"
+          required>
+        <app-error-msg [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório">
+        </app-error-msg>
       </div>
     </div>
   </div>
@@ -16,23 +22,31 @@
       <label for="email" class="form-label">E-mail</label>
       <input type="email" class="form-control" id="email" name="email" placeholder="nome@email.com"
         formControlName="email" required>
-      <div *ngIf="verificaValidTouched('email')" class="invalid-feedback" role="alert">
+      <!-- <div *ngIf="verificaValidTouched('email')" class="invalid-feedback" role="alert">
         Email é obrigatório.
       </div>
       <div *ngIf="verificaEmailInvalido()" class="invalid-feedback" role="alert">
         Email invalido.
-      </div>
+      </div> -->
+      <app-error-msg [mostrarErro]="verificaValidTouched('email')" msgErro="Email é obrigatório.">
+      </app-error-msg>
+      <app-error-msg [mostrarErro]="verificaEmailInvalido()" msgErro="Email invalido.">
+      </app-error-msg>
     </div>
     <div class="form-group col-sm-6 pb-2" [ngClass]="aplicaCssValidacao('confirmarEmail')">
       <label for="confirmarEmail" class="form-label">Confirmar E-mail</label>
       <input type="email" class="form-control" id="confirmarEmail" name="confirmarEmail" placeholder="nome@email.com"
         formControlName="confirmarEmail" required>
-      <div *ngIf="verificaValidTouched('confirmarEmail')" class="invalid-feedback" role="alert">
+      <!-- <div *ngIf="verificaValidTouched('confirmarEmail')" class="invalid-feedback" role="alert">
         Confirmar e-mail é obrigatório.
       </div>
       <div *ngIf="verificaEmailInvalido()" class="invalid-feedback" role="alert">
         Email invalido.
-      </div>
+      </div> -->
+      <app-error-msg [mostrarErro]="verificaValidTouched('confirmarEmail')" msgErro="Confirmar e-mail é obrigatório.">
+      </app-error-msg>
+      <app-error-msg [mostrarErro]="verificaEmailInvalido()" msgErro="Email invalido.">
+      </app-error-msg>
     </div>
   </div>
 
@@ -45,17 +59,21 @@
         <label for="cep" class="form-label">CEP</label>
         <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="00000-000"
           (blur)="consultaCEP()" required>
-        <div *ngIf="verificaValidTouched('endereco.cep')" class="invalid-feedback" role="alert">
+        <!-- <div *ngIf="verificaValidTouched('endereco.cep')" class="invalid-feedback" role="alert">
           CEP é Obrigatório
-        </div>
+        </div> -->
+        <app-error-msg [mostrarErro]="verificaValidTouched('endereco.cep')" msgErro="CEP é Obrigatório">
+        </app-error-msg>
       </div>
       <!-- NÚMERO -->
       <div class="col-md-3 form-group" [ngClass]="aplicaCssValidacao('endereco.numero')">
         <label for="numero" class="form-label">Número</label>
         <input type="text" class="form-control" id="numero" formControlName="numero" placeholder="001" required>
-        <div *ngIf="verificaValidTouched('endereco.numero')" class="invalid-feedback" role="alert">
+        <!-- <div *ngIf="verificaValidTouched('endereco.numero')" class="invalid-feedback" role="alert">
           Número é Obrigatório
-        </div>
+        </div> -->
+        <app-error-msg [mostrarErro]="verificaValidTouched('endereco.numero')" msgErro="Número é Obrigatório">
+        </app-error-msg>
       </div>
       <!-- COMPLEMENTO -->
       <div class="col-md-6 form-group">
@@ -70,9 +88,11 @@
       <div class="form-group pb-2" [ngClass]="aplicaCssValidacao('endereco.rua')">
 
         <input type="text" class="form-control" id="name" formControlName="rua" required>
-        <div *ngIf="verificaValidTouched('endereco.rua')" class="invalid-feedback">
+        <!-- <div *ngIf="verificaValidTouched('endereco.rua')" class="invalid-feedback">
           Rua é obrigatório
-        </div>
+        </div> -->
+        <app-error-msg [mostrarErro]="verificaValidTouched('endereco.rua')" msgErro="Rua é obrigatório">
+        </app-error-msg>
       </div>
     </div>
     <!-- BAIRRO/CIDADE/ESTADO -->
@@ -127,23 +147,22 @@
     <div class="form-check form-check-inline" [ngClass]="aplicaCssValidacao('termos')">
       <input class="form-check-input" type="checkbox" id="termos" formControlName="termos" required>
       <label class="form-check-label" for="termos">Aceita os termos.</label>
-      <div *ngIf="verificaValidTouched('termos')" class="invalid-feedback">
+      <!-- <div *ngIf="verificaValidTouched('termos')" class="invalid-feedback">
         Por favor, aceite os termos.
-      </div>
+      </div> -->
+      <app-error-msg [mostrarErro]="verificaValidTouched('termos')" msgErro="Por favor, aceite os termos.">
+      </app-error-msg>
     </div>
   </div>
 
   <div class="form-group col-sm-12 mb-3">
     <label for="frameworks">Frameworks</label>
     <div id="frameworks">
-      <div class="form-check col-sm-3"  formArrayName="frameworks"
-      *ngFor="let item of getFrameworksControls(), let i = index">
+      <div class="form-check col-sm-3" formArrayName="frameworks"
+        *ngFor="let item of getFrameworksControls(), let i = index">
         <input class="form-check-input" type="checkbox" id="frameworks" [formControlName]="i">
-        <label class="form-check-label" for="frameworks">{{ framework[i]  }}</label>
+        <label class="form-check-label" for="frameworks">{{ framework[i] }}</label>
       </div>
-      <!-- <div *ngIf="verificaValidTouched('frameworks')" class="invalid-feedback">
-        Selecione 1 opção.
-      </div> -->
     </div>
   </div>
 

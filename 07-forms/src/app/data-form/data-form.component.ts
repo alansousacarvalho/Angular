@@ -8,6 +8,7 @@ import { FormValidations } from '../shared/form-validations';
 import { Estados } from '../shared/models/estados.models';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { EstadosService } from '../shared/services/estados.service';
+import { VerificarEmailService } from '../shared/services/verificar-email.service';
 
 @Component({
   selector: 'app-data-form',
@@ -27,19 +28,22 @@ export class DataFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private estadoService: EstadosService,
-    private consultaCepService: ConsultaCepService
+    private consultaCepService: ConsultaCepService,
+    private verificarEmailService: VerificarEmailService
   ) { }
 
   ngOnInit(): void {
+
+    this.verificarEmailService.verificarEmail('email@email.com').subscribe();
     // this.form = new FormGroup({
     //   nome: new FormControl('Loiane'),
     //   email: new FormControl('Loiane')
     // });
 
     this.form = this.formBuilder.group({
-      nome: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      confirmarEmail: ['', [Validators.required, Validators.email]],
+      nome: ['', Validators.required, Validators.minLength(3)],
+      email: ['', [Validators.required, Validators.email], this.validarEmail.bind(this)],
+      confirmarEmail: ['', [FormValidations.equalTo('email')]],
       endereco: this.formBuilder.group({
         cep: [null, [Validators.required, FormValidations.cepValidator]],
         numero: [null, Validators.required],
@@ -66,9 +70,10 @@ export class DataFormComponent implements OnInit {
     this.newsletterOptions = this.estadoService.getNewsletter();
   }
 
+  /**  Frameworks. */
   buildFrameworks() {
     const values = this.framework.map(v => new FormControl(false));
-    return this.formBuilder.array(values, FormValidations.requiredMinCheckbox(1));
+    return this.formBuilder.array(values);
 
     // this.formBuilder.array [
     //   new FormControl(false),
@@ -79,10 +84,11 @@ export class DataFormComponent implements OnInit {
   }
 
   getFrameworksControls() {
-    const controls = this.form.get('frameworks') ?  (<FormArray>this.form.get('frameworks')).controls : null;
+    const controls = this.form.get('frameworks') ? (<FormArray>this.form.get('frameworks')).controls : null;
     return controls;
   }
 
+  /** Método responsável por fazer o POST do formulário. */
   onSubmit() {
     // console.log(this.form);
 
@@ -116,6 +122,7 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  /** Verificar os campos de endereço pra ver se foram preenchidos. */
   verificaValidacoesForm(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(campo => {
       const controle = formGroup.get(campo);
@@ -126,14 +133,12 @@ export class DataFormComponent implements OnInit {
     })
   }
 
+  /** Resetar o formulário */
   resetar() {
     this.form.reset();
   }
 
-  verificaValidTouched(campo: string) {
-    return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
-  }
-
+  /** Aplica a formatação CSS caso os campos estirevem inválidos ou tocados.*/
   aplicaCssValidacao(campo: string) {
     return {
       'needs-validation': this.verificaValidTouched(campo),
@@ -141,6 +146,12 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  /** Verificar se o campo está inválido ou foi tocado. */
+  verificaValidTouched(campo: string) {
+    return this.form.get(campo)?.invalid && this.form.get(campo)?.touched;
+  }
+
+  /** Verifica se o e-mail está inválido (possui o '@') */
   verificaEmailInvalido() {
     let campoEmail = this.form.get('email');
     if (campoEmail?.errors) {
@@ -148,6 +159,8 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+
+  /** Recuperar o CEP */
   consultaCEP() {
     //Nova variável "cep" que recebe o valor do cep pelo formulário;
     let cep = this.form.get('endereco.cep')?.value;
@@ -161,6 +174,7 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  /** Resetar os campos do formulário, caso apertar em 'Submit'. */
   resetaDadosForm() {
     this.form.patchValue({
       endereco: {
@@ -175,6 +189,7 @@ export class DataFormComponent implements OnInit {
     });
   }
 
+  /** Popular os campos de endereço de acordo com o CEP.  */
   populaDadosForm(dados: any) {
     this.form.patchValue({
       endereco: {
@@ -189,17 +204,26 @@ export class DataFormComponent implements OnInit {
     });
   }
 
+  /** Setar o cargo a partir do que for selecionado no select. */
   setarCargo() {
     const cargo = { nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl' };
     this.form.get('cargo')?.setValue(cargo);
   }
 
+  /** Compara os cargos se está de acordo com os níveis. */
   compararCargos(obj1: any, obj2: any) {
     return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
   }
 
+  /** Setar tecnologias no formulário. */
   setarTecnologias() {
     this.form.get('tecnologia')?.setValue(['java', 'javascript', 'php']);
+  }
+
+  /** Verificar se o e-mail existe no back-end (verificarEmail.json) */
+  validarEmail(formControl: FormControl) {
+    return this.verificarEmailService.verificarEmail(formControl.value)
+      .pipe(map(emailExiste => emailExiste ? { emailInvalido: true } : null));
   }
 
 }

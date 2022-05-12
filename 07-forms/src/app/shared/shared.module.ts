@@ -4,17 +4,25 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FormDebugComponent } from '../shared/form-debug/form-debug.component';
 import { EstadosService } from './services/estados.service';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    FormDebugComponent
+    FormDebugComponent,
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [
-    FormDebugComponent
+    FormDebugComponent,
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
   providers: [
     EstadosService
