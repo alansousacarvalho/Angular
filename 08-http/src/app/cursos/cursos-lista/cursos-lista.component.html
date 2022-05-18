@@ -1,46 +1,45 @@
+<div class="card mt-2">
+  <div class="card-header d-flex justify-content-between">
+    <div class="">
+      <h4>Cursos</h4>
+    </div>
+    <div class="">
+      <button class="btn btn-primary me-1" [routerLink]="['novo']">Novo Curso</button>
+      <button class="btn btn-secondary" (click)="onRefresh()">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </button>
+    </div>
 
-    <div class="card mt-2">
-      <div class="card-header d-flex justify-content-between">
-        <div class="">
-          <h4>Cursos</h4>
-        </div>
-        <div class="">
-          <button class="btn btn-primary me-1" [routerLink]="['novo']">Novo Curso</button>
-          <button class="btn btn-secondary" (click)="onRefresh()">
-            <i class="fa-solid fa-arrows-rotate"></i>
-          </button>
-        </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover" *ngIf="cursos$ | async as cursos; else loading">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Curso</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nome }}</td>
+          <td class="d-flex justify-content-end">
+            <span>
+              <button class="btn btn-outline-warning mb-1 me-2" (click)="onEdit(curso.id)">
+                Atualizar
+              </button>
 
-      </div>
-      <div class="card-body">
-        <table class="table table-hover" *ngIf="cursos$ | async as cursos; else loading">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Curso</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr  *ngFor="let curso of cursos">
-              <td>{{ curso.id }}</td>
-              <td>{{ curso.nome }}</td>
-              <td class="d-flex justify-content-end">
-                <span>
-                  <button class="btn btn-outline-warning mb-1 me-2" (click)="onEdit(curso.id)">
-                    Atualizar
-                  </button>
+              <button class="btn btn-outline-danger mb-1" (click)="onDelete(curso.id)">
+                Remover
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-                  <button class="btn btn-outline-danger mb-1">
-                    Remover
-                  </button>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- <ng-template #loadingError>
+    <!-- <ng-template #loadingError>
           <div *ngIf="error$ | async; else loadingNoError">
             Erro ao carregar os cursos, Tente novamente mais tarde.
           </div>
@@ -49,8 +48,16 @@
           </ng-template>
         </ng-template> -->
 
-        <ng-template #loading>
-          <span>Carregando Cursos...</span>
-        </ng-template>
-      </div>
-    </div>
+    <ng-template #loading>
+      <span>Carregando Cursos...</span>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Tem certeza que deseja remover esse curso?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()">Não</button>
+  </div>
+</ng-template>
