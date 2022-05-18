@@ -5,7 +5,10 @@
           <h4>Cursos</h4>
         </div>
         <div class="">
-          <button class="btn btn-primary" [routerLink]="['novo']">Novo Curso</button>
+          <button class="btn btn-primary me-1" [routerLink]="['novo']">Novo Curso</button>
+          <button class="btn btn-secondary" (click)="onRefresh()">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </button>
         </div>
 
       </div>
@@ -20,11 +23,11 @@
           </thead>
           <tbody>
             <tr  *ngFor="let curso of cursos">
-              <td> {{ curso.id }}</td>
+              <td>{{ curso.id }}</td>
               <td>{{ curso.nome }}</td>
               <td class="d-flex justify-content-end">
                 <span>
-                  <button class="btn btn-outline-warning mb-1 me-2">
+                  <button class="btn btn-outline-warning mb-1 me-2" (click)="onEdit(curso.id)">
                     Atualizar
                   </button>
 
@@ -36,6 +39,15 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- <ng-template #loadingError>
+          <div *ngIf="error$ | async; else loadingNoError">
+            Erro ao carregar os cursos, Tente novamente mais tarde.
+          </div>
+          <ng-template #loadingNoError>
+            <span>Carregando Cursos...</span>
+          </ng-template>
+        </ng-template> -->
 
         <ng-template #loading>
           <span>Carregando Cursos...</span>

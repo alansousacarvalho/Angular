@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UnsubscribeRxjsComponent } from './unsubscribe-poc/unsubscribe-rxjs.component';
+import { UnsubscribeRxjsComponent } from './unsubscribe-poc';
 
 
 const routes: Routes = [

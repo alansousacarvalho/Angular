@@ -1,0 +1,14 @@
+<form [formGroup]="form" class="row g-3 needs-validation mt-2" novalidate>
+  <div class="col-sm-12">
+    <label for="validationCustom01" class="form-label">Nome do Curso</label>
+    <input formControlName="nome" type="text" class="form-control" id="validationCustom01"
+      placeholder="Ex: React Native" [ngClass]="{'is-invalid': submitted && hasError('nome')}">
+    <div class="invalid-feedback">
+        Por favor, informe um nome para o curso.
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+    <button type="submit" class="btn btn-default" (click)="onCancel()">Cancelar</button>
+  </div>
+</form>
