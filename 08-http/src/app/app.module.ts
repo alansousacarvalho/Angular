@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ReactiveSearchModule } from './reactive-search/reactive-search.module';
 
 @NgModule({
   declarations: [

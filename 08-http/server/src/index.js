@@ -27,7 +27,7 @@
 // });
 
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const multiparty = require('connect-multiparty');
 
 const app = express();
@@ -37,6 +37,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const multipartMiddleware = multiparty({ uploadDir: './uploads' });
+
+// Download Excel
+app.get('/downloadExcel', (req,res) => {
+  res.download('./uploads/report.ods');
+});
+
+// Download PDF
+app.get('/downloadPDF', (req,res) => {
+  res.download('./uploads/JavaScript.pdf');
+
+});
 
 app.post('/upload', multipartMiddleware, (req, res) => {
   const files = req.files;
