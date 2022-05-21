@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 
 import { CursosService } from 'src/app/shared';
+import { Cursos2Service } from 'src/app/shared/services/cursos2.service';
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class CursosFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cursoService: CursosService,
+    private curso2Service: Cursos2Service,
     private sweetAlertService: SweetAlertService,
     private router: Router,
     private route: ActivatedRoute
@@ -71,7 +72,7 @@ export class CursosFormComponent implements OnInit {
         msgErro = 'Erro ao atualizar o curso, tente novamente!';
       }
 
-      this.cursoService.save(valueForm).subscribe({
+      this.curso2Service.save(valueForm).subscribe({
         next: (v) => {
           this.sweetAlertService.swalAlertSuccess(msgSucesso);
           this.router.navigate(['/cursos']);

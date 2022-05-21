@@ -5,6 +5,7 @@ import { catchError, EMPTY, Observable, Subject } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CursosService, AlertModalService, AlertModalComponent, Curso } from 'src/app/shared';
 import { SweetAlertService } from 'src/app/shared/services/sweet-alert.service';
+import { Cursos2Service } from 'src/app/shared/services/cursos2.service';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -23,7 +24,7 @@ export class CursosListaComponent implements OnInit {
   cursoSelecionado!: Curso;
 
   constructor(
-    private cursoService: CursosService,
+    private curso2Service: Cursos2Service,
     // private modalService: BsModalService,
     private alertService: AlertModalService,
     private sweetAlertService: SweetAlertService,
@@ -44,7 +45,7 @@ export class CursosListaComponent implements OnInit {
 
   /** Recarrega os cursos */
   onRefresh() {
-    this.cursos$ = this.cursoService.list()
+    this.cursos$ = this.curso2Service.list()
       .pipe(
         catchError(error => {
           this.handleError(); //no lugar do 'this.error$.next(true)';
@@ -87,7 +88,7 @@ export class CursosListaComponent implements OnInit {
 
   /** Confirmar se o usuário realmente quer deletar o curso */
   onConfirmDelete() {
-    this.cursoService.remove(this.cursoSelecionado).subscribe({
+    this.curso2Service.remove(this.cursoSelecionado).subscribe({
       next: (v) => {
         this.onRefresh();
         this.sweetAlertService.swalAlertSuccess('Curso deletado com sucesso!');
