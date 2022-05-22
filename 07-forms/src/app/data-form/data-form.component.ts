@@ -1,14 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormControlName, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormValidations } from '../shared/form-validations';
 
-import { Estados } from '../shared/models/estados.models';
-import { ConsultaCepService } from '../shared/services/consulta-cep.service';
-import { EstadosService } from '../shared/services/estados.service';
-import { VerificarEmailService } from '../shared/services/verificar-email.service';
+import { Estados, ConsultaCepService, EstadosService, VerificarEmailService } from '../shared';
 
 @Component({
   selector: 'app-data-form',
@@ -33,32 +30,12 @@ export class DataFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.verificarEmailService.verificarEmail('email@email.com').subscribe();
     // this.form = new FormGroup({
     //   nome: new FormControl('Loiane'),
     //   email: new FormControl('Loiane')
     // });
-
-    this.form = this.formBuilder.group({
-      nome: ['', Validators.required, Validators.minLength(3)],
-      email: ['', [Validators.required, Validators.email], this.validarEmail.bind(this)],
-      confirmarEmail: ['', [FormValidations.equalTo('email')]],
-      endereco: this.formBuilder.group({
-        cep: [null, [Validators.required, FormValidations.cepValidator]],
-        numero: [null, Validators.required],
-        complemento: [null],
-        rua: [null, Validators.required],
-        bairro: [null, Validators.required],
-        cidade: [null, Validators.required],
-        estado: [null, Validators.required]
-      }),
-      cargo: [null],
-      tecnologia: [null],
-      newsletter: [null],
-      termos: [null, Validators.pattern('true')],
-      frameworks: this.buildFrameworks()
-    });
+    this.createform();
     // this.estadoService.getEstados().subscribe(
     //   dados => {
     //     this.estado = dados;
@@ -159,7 +136,6 @@ export class DataFormComponent implements OnInit {
     }
   }
 
-
   /** Recuperar o CEP */
   consultaCEP() {
     //Nova variável "cep" que recebe o valor do cep pelo formulário;
@@ -174,6 +150,28 @@ export class DataFormComponent implements OnInit {
     }
   }
 
+  /** Formulário */
+  createform() {
+    this.form = this.formBuilder.group({
+      nome: ['', Validators.required, Validators.minLength(3)],
+      email: ['', [Validators.required, Validators.email], this.validarEmail.bind(this)],
+      confirmarEmail: ['', [FormValidations.equalTo('email')]],
+      endereco: this.formBuilder.group({
+        cep: [null, [Validators.required, FormValidations.cepValidator]],
+        numero: [null, Validators.required],
+        complemento: [null],
+        rua: [null, Validators.required],
+        bairro: [null, Validators.required],
+        cidade: [null, Validators.required],
+        estado: [null, Validators.required]
+      }),
+      cargo: [null],
+      tecnologia: [null],
+      newsletter: [null],
+      termos: [null, Validators.pattern('true')],
+      frameworks: this.buildFrameworks()
+    });
+  }
   /** Resetar os campos do formulário, caso apertar em 'Submit'. */
   resetaDadosForm() {
     this.form.patchValue({
@@ -225,5 +223,4 @@ export class DataFormComponent implements OnInit {
     return this.verificarEmailService.verificarEmail(formControl.value)
       .pipe(map(emailExiste => emailExiste ? { emailInvalido: true } : null));
   }
-
 }

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DataFormComponent } from './data-form.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [

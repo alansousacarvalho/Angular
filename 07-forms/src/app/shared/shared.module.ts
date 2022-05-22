@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
-import { FormDebugComponent } from '../shared/form-debug/form-debug.component';
-import { EstadosService } from './services/estados.service';
-import { ErrorMsgComponent } from './error-msg/error-msg.component';
-import { InputFieldComponent } from './input-field/input-field.component';
 import { FormsModule } from '@angular/forms';
+
+import { FormDebugComponent } from '../shared';
+import { InputFieldComponent } from './input-field/input-field.component';
+import { ErrorMsgComponent } from './error-msg';
+import { EstadosService } from './services';
 
 @NgModule({
   declarations: [

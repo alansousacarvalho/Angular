@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
-import { ConsultaCepService } from '../shared/services/consulta-cep.service';
+import { ConsultaCepService } from '../shared';
 
 @Component({
   selector: 'app-template-form',
