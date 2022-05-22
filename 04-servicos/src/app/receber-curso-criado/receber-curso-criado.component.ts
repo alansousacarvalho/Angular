@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CursosService } from '../cursos/curso.service';
+import { CursosService } from '../shared';
 
 @Component({
   selector: 'app-receber-curso-criado',
@@ -8,7 +8,6 @@ import { CursosService } from '../cursos/curso.service';
   styleUrls: ['./receber-curso-criado.component.css']
 })
 export class ReceberCursoCriadoComponent implements OnInit {
-
   curso: any;
 
   constructor(private cursoService: CursosService) { }
@@ -20,5 +19,4 @@ export class ReceberCursoCriadoComponent implements OnInit {
       }
     );
   }
-
 }

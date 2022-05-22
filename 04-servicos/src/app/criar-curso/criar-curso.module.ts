@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { CriarCursoComponent } from './criar-curso.component';
-import { ReceberCursoCriadoComponent } from '../receber-curso-criado/receber-curso-criado.component';
+import { CriarCursoComponent } from '.';
+import { ReceberCursoCriadoComponent } from '../receber-curso-criado';
 
 @NgModule({
   declarations: [
