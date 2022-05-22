@@ -80,10 +80,10 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "optimization": false,
               "vendorChunk": true,
-              "extractLicenses": false,
+              "extractLicenses": true,
               "sourceMap": true,
               "namedChunks": true
             }
@@ -124,6 +124,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "08-http:build:production",
+            "firebaseProject": "curso-angular-alan-loiane",
+            "firebaseHostingSite": "curso-angular-alan-loiane"
           }
         }
       }

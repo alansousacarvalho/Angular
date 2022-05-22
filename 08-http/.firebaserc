@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "curso-angular-alan-loiane": {
+      "hosting": {
+        "08-http": [
+          "curso-angular-alan-loiane"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "curso-angular-alan-loiane"
+  }
+}
