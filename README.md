@@ -13,7 +13,3 @@ Nesse repositório, contêm todo o conteúdo referente ao curso de Angular da Lo
 - Requisição HTTP;
 - Depuração e Debug; e
 - Build e Deploy.
-
-#
-
-Obs.: Ainda estou finalizando o curso, então haverá novas atualizações nesse repositório. :wink::v:
