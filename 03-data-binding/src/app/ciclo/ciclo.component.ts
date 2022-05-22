@@ -8,7 +8,8 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  OnInit } from '@angular/core';
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-ciclo',
@@ -16,14 +17,14 @@ import {
   styleUrls: ['./ciclo.component.css']
 })
 export class CicloComponent implements OnChanges, OnInit,
-DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
-AfterViewChecked, OnDestroy {
+  DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit,
+  AfterViewChecked, OnDestroy {
 
   @Input() valorInicial: number = 10;
 
   constructor() {
     this.log('Constructor');
-   }
+  }
 
   ngOnChanges() {
     this.log('ngOnChanges');

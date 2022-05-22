@@ -6,16 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./data-binding.component.css']
 })
 export class DataBindingComponent implements OnInit {
-
   url: string = 'www.google.com';
   urlImg: string = 'http://lorempixel.com.br/500/400/?1';
   cursoAngular: boolean = true;
   valorAtual: string = '';
   valorSalvo: string = '';
   mouseOverOut: boolean = false;
-
   nomeCarro: string = 'Palio';
-
   valorInicial = 5;
 
   constructor() { }

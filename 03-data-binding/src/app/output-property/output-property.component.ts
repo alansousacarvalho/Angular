@@ -21,27 +21,27 @@ export class OutputPropertyComponent implements OnInit {
 
   }
 
-  /**
-   * Incrementa/Decrementa com Input/OutPut Property
-   */
+  /** Incrementa com Input/OutPut Property */
   incrementa() {
     this.valor++;
     this.mudouValor.emit({novoValor: this.valor});
   }
 
+  /** Decrementa com Input/OutPut Property */
   decrementa() {
     this.valor--;
     this.mudouValor.emit({novoValor: this.valor});
   }
 
+  /** Incrementa com ViewChild */
   incrementaChild() {
     this.campoValorInput.nativeElement.value++;
     console.log(this.campoValorInput.nativeElement.value);
   }
 
+  /** Decrementa com ViewChild */
   decrementaChild() {
     this.campoValorInput.nativeElement.value--;
     console.log(this.campoValorInput.nativeElement.value);
   }
-
 }
