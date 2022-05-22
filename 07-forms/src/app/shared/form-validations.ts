@@ -1,7 +1,6 @@
 import { FormControl, FormGroup } from "@angular/forms";
 
 export class FormValidations {
-
   // static requiredMinCheckbox(min = 1) {
   //   const totalChecked: ValidatorFn = (formArray: AbstractControl) => {
   //     // const totalChecked = formArray.controls
@@ -18,11 +17,9 @@ export class FormValidations {
   //   };
   //   return totalChecked;
   // }
-
   static cepValidator(control: FormControl) {
     // console.log(control);
     const cep = control.value;
-
     if (cep && cep !== '') {
       const validacep = /^[0-9]{5}-[0-9]{3}$/;
       return validacep.test(cep) ? null : { cepInvalido: true };
@@ -53,7 +50,6 @@ export class FormValidations {
     };
     return validator;
   }
-
   /** Serviços de mensagens de Erros (Comentado pois está dando erro)*/
   // static getErrorMsg(fieldName: string, validatorName: string, validatorValue?: any) {
   //   const config = {
