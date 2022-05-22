@@ -19,5 +19,4 @@ export class AlunosComponent implements OnInit {
   ngOnInit(): void {
     this.alunos = this.alunosService.getAlunos();
   }
-
 }
