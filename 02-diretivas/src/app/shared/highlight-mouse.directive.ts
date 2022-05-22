@@ -1,10 +1,8 @@
 import { Directive, HostListener, ElementRef, Renderer2, HostBinding } from '@angular/core';
-
 @Directive({
   selector: '[HighlightMouse]'
 })
 export class HighlightMouseDirective {
-
   background: string = 'blue';
 
   @HostListener('mouseenter') onMouseEnter() {
@@ -27,5 +25,4 @@ export class HighlightMouseDirective {
   onMouseOver() {
     this.backgroundColor = 'blue';
   }
-
 }

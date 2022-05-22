@@ -3,17 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { DiretivaNgifComponent } from './diretiva-ngif/diretiva-ngif.component';
-import { TesteStyleComponent } from './teste-style/teste-style.component';
-import { NgSwitchComponent } from './ng-switch/ng-switch.component';
-import { NgForComponent } from './ng-for/ng-for.component';
-import { NgClassComponent } from './ng-class/ng-class.component';
-import { NgStyleComponent } from './ng-style/ng-style.component';
-import { OperadorElvisComponent } from './operador-elvis/operador-elvis.component';
-import { NgContentComponent } from './ng-content/ng-content.component';
-import { FundoAmareloDirective } from './shared/fundo-amarelo.directive';
-import { DiretivasCustomizadasComponent } from './diretivas-customizadas/diretivas-customizadas.component';
-import { HighlightMouseDirective } from './shared/highlight-mouse.directive';
+import { DiretivaNgifComponent } from './diretiva-ngif';
+import { TesteStyleComponent } from './teste-style';
+import { NgSwitchComponent } from './ng-switch';
+import { NgForComponent } from './ng-for';
+import { NgClassComponent } from './ng-class';
+import { NgStyleComponent } from './ng-style';
+import { OperadorElvisComponent } from './operador-elvis';
+import { NgContentComponent } from './ng-content';
+import { DiretivasCustomizadasComponent } from './diretivas-customizadas';
+import { FundoAmareloDirective, HighlightMouseDirective } from './shared';
 
 @NgModule({
   declarations: [

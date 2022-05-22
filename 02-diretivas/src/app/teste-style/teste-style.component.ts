@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-teste-style',
   templateUrl: './teste-style.component.html',
@@ -11,5 +10,4 @@ export class TesteStyleComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-ng-style',
   templateUrl: './ng-style.component.html',
   styleUrls: ['./ng-style.component.css']
 })
 export class NgStyleComponent implements OnInit {
-
   ativo: boolean = false;
   tamanhoFonte: number = 10;
 
@@ -18,5 +16,4 @@ export class NgStyleComponent implements OnInit {
   mudarAtivo(){
     this.ativo = !this.ativo;
   }
-
 }

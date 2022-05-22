@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diretivas-customizadas.component.css']
 })
 export class DiretivasCustomizadasComponent implements OnInit {
-
   bg: boolean = false;
 
   constructor() { }

@@ -1,5 +1,4 @@
 import { Directive, ElementRef, Renderer2 } from '@angular/core';
-
 @Directive({
   selector: 'button[FundoAmarelo]'
 })
@@ -13,5 +12,4 @@ export class FundoAmareloDirective {
     // this.elementRef.nativeElement.style.backgroundColor = 'yellow';
     this.renderer.setStyle(this.elementRef.nativeElement,'background-color','yellow')
   }
-
 }

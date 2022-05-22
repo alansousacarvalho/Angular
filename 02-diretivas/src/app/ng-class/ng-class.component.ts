@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ng-class.component.css']
 })
 export class NgClassComponent implements OnInit {
-
   meuFavorito: boolean = false;
   meuFavoritoClass: boolean = false;
 
@@ -22,5 +21,4 @@ export class NgClassComponent implements OnInit {
   onClickClass() {
     this.meuFavoritoClass = !this.meuFavoritoClass;
   }
-
 }
